@@ -1,0 +1,6 @@
+dotenv
+pandas
+langchain
+langchain-groq
+openpyxl
+langchain-ollama
