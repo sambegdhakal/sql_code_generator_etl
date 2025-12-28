@@ -8,9 +8,11 @@ import os
 INPUT_FILE = os.getenv("INPUT_FILE", "transformation_files/Transformation_logic.xlsx")
 OUTPUT_FILE = os.getenv("OUTPUT_FILE", "transformation_files/transformed_with_sql.xlsx")
 
+LLM_HOST = os.getenv("LLM_HOST", "localhost")  #here default value is set for local run
+LLM_PORT = int(os.getenv("LLM_PORT", 11434)) 
 
 #LLM as Ollama
-llm = ChatOllama(model="gemma3:4b",temperature=0)
+llm = ChatOllama(model="gemma3:4b", host=LLM_HOST, port=LLM_PORT,temperature=0)
 
 
 # building prompts as per requirement 

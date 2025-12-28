@@ -25,9 +25,7 @@ Replace <YOUR_DOCKERHUB_USERNAME> with your Docker Hub username.
 🚀 Run the Container (Default Input)
 By default, the container will use the included Transformation_logic.xlsx and output results to the container. You can mount a local folder to store the output:
 
-bash
-Copy code
-docker run --rm -v /path/to/local/output:/app/output \
+docker run --rm -e LLM_HOST=host.docker.internal -v /path/to/local/output:/app/output \
   <YOUR_DOCKERHUB_USERNAME>/etl_sql_generator:latest
 Explanation:
 
@@ -36,14 +34,9 @@ Explanation:
 -v /path/to/local/output:/app/output → Mounts a local folder to /app/output inside the container so you can access generated files locally.
 
 The default input file used inside the container is:
-
-bash
-Copy code
 /app/transformation_files/Transformation_logic.xlsx
-The default output file is:
 
-bash
-Copy code
+The default output file is:
 /app/transformation_files/transformed_with_sql.xlsx
 📝 Using Your Own Input File
 If you want to use your own Transformation_logic.xlsx or change the output location:
@@ -52,9 +45,8 @@ Place your Excel file in a local folder, e.g., /path/to/local/input.
 
 Mount it inside the container and set environment variables:
 
-bash
-Copy code
 docker run --rm \
+  -e LLM_HOST=host.docker.internal \
   -v /path/to/local/input:/app \
   -v /path/to/local/output:/app/output \
   -e INPUT_FILE="/app/Transformation_logic.xlsx" \
@@ -85,8 +77,6 @@ By default, the container uses Transformation_logic.xlsx included in the image i
 
 You can run the versioned image using:
 
-bash
-Copy code
 docker pull <YOUR_DOCKERHUB_USERNAME>/etl_sql_generator:1.0.0
 docker run --rm -v /path/to/local/output:/app/output \
   <YOUR_DOCKERHUB_USERNAME>/etl_sql_generator:1.0.0
