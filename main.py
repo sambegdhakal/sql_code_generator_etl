@@ -11,8 +11,14 @@ OUTPUT_FILE = os.getenv("OUTPUT_FILE", "transformation_files/transformed_with_sq
 def running_in_docker() -> bool:
     return os.path.exists("/.dockerenv")
 
+OLLAMA_BASE_URL = (
+    "http://host.docker.internal:11434"
+    if running_in_docker()
+    else "http://localhost:11434"
+)
+
 LLM_HOST = "host.docker.internal" if running_in_docker() else "localhost"
-llm = ChatOllama(model="gemma3:4b", host=LLM_HOST, port=11434, temperature=0)
+llm = ChatOllama(model="gemma3:4b", base_url=OLLAMA_BASE_URL, temperature=0)
 
 
 # building prompts as per requirement 
