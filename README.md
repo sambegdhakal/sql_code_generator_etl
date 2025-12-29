@@ -19,6 +19,7 @@ Supports custom input/output files via environment variables.
 Versioned Docker image (latest and 1.0.0) for reproducibility.
 
 📦 Pull the Docker Image
+
 docker pull <YOUR_DOCKERHUB_USERNAME>/etl_sql_generator:latest
 
 
@@ -32,6 +33,8 @@ docker run --rm -e LLM_HOST=host.docker.internal -e LLM_PORT=11434 -e OUTPUT_FIL
 
 
 Explanation:
+
+--use your own output file path; that's my file path
 
 --rm → automatically removes the container after execution.
 
@@ -59,6 +62,7 @@ docker run --rm -e LLM_HOST=host.docker.internal -e LLM_PORT=11434 -v C:\Users\s
 
 
 Notes:
+--use your own input and output file path; that's my file path
 
 INPUT_FILE → path to your input Excel inside the container.
 
